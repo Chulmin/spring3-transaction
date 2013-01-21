@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Transaction Test</title>
+	</head>
+	<body>
+		<h1>Transaction Test</h1>
+		<hr/>
+		<h2>설명</h2>
+		<ol>
+			<li>테이블 Create 필요함!</li>
+			<li>DBLink Create 필요함!</li>
+			<li>각각의 Service를 호출하는 Service Interface에 Transaction 설정.</li>
+			<li>각각의 Service에는 Transaction 설정이 없음.</li>
+			<li>각각의 Dao에는 Transaction 설정이 없음.</li>
+		</ol>
+		<h2>참고</h2>
+		<ol>
+			<li>한 Transaction 내에서 특별히 한 로직만 새로운 Transaction 을 생성 하고 싶을 때는 <br/>
+				=> <font color="red">@Transactional(propagation=Propagation.REQUIRES_NEW)</font>
+			</li>
+		</ol>
+		<h2>링크</h2>
+		<ol>
+			<li><a href="../tr/delAll">DB 초기화!</a></li>
+			<li><a href="../tr/test_by_service">Service 아래 각각의 Service 호출!</a></li>
+			<li><a href="../tr/test_direct">각각의 Service를 직접 호출!</a></li>
+			<li><a href="../tr/test_direct2">각각의 Service를 직접 호출 하지만, Controller 해당 Method에 Transaction 설정</a></li>
+		</ol>
+	</body>
+</html>

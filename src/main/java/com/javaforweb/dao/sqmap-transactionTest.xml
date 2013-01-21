@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="transactionTest">
+
+	<typeAlias alias="firstEntity" type="com.epapyrus.gateway.pdf.custom.bean.TransactionTestFirstEntity"/>
+	<typeAlias alias="secondEntity" type="com.epapyrus.gateway.pdf.custom.bean.TransactionTestSecondEntity"/>
+	
+	<insert id="test-local-insert" parameterClass="HashMap">
+		INSERT INTO TEST ( ID, NAME )
+		VALUES ( #id#, #name# )
+	</insert>
+	
+	<insert id="test-from-local-to-dblink-insert" parameterClass="String">
+		INSERT INTO TEST@DL_95_CHULMIN (ID, NAME)
+		SELECT ID, NAME FROM TEST WHERE ID = #id#
+	</insert>
+	
+	<insert id="test-dblink-insert" parameterClass="HashMap">
+		INSERT INTO TEST@DL_95_CHULMIN ( ID, NAME )
+		VALUES ( #id#, #name# )
+	</insert>
+
+	<insert id="test2-dblink-insert" parameterClass="HashMap">
+		INSERT INTO TEST2@DL_95_CHULMIN ( KEY, VALUE )
+		VALUES ( #key#, #value# )
+	</insert>
+	
+	<insert id="test2-from-dblink-to-local-insert" parameterClass="String">
+		INSERT INTO TEST2 ( KEY, VALUE)
+		SELECT KEY, VALUE FROM TEST2@DL_95_CHULMIN WHERE KEY = #key#
+	</insert>
+	
+	<delete id="test-local-delete" parameterClass="String">
+		DELETE FROM TEST WHERE ID = #id#
+	</delete>
+	
+	<delete id="test2-local-delete" parameterClass="String">
+		DELETE FROM TEST2 WHERE KEY = #key#
+	</delete>
+	
+	<delete id="test-dblink-delete" parameterClass="String">
+		DELETE FROM TEST@DL_95_CHULMIN WHERE ID = #id#
+	</delete>
+	
+	<delete id="test2-dblink-delete" parameterClass="String">
+		DELETE FROM TEST2@DL_95_CHULMIN WHERE KEY = #key#
+	</delete>
+</sqlMap>

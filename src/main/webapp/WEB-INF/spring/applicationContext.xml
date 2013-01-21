@@ -39,10 +39,6 @@
 		p:password="${jdbc.password}"
 	/>
 		
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor" lazy-init="true"/>
@@ -51,15 +47,26 @@
 		<property name="nativeJdbcExtractor"><ref local="nativeJdbcExtractor"/></property>
 	</bean>
 	
+<!-- ====================================================================== -->
+<!--     Transaction Manager Configuration                                  -->
+<!-- ====================================================================== -->		
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+<!-- ====================================================================== -->
+<!--     iBatis sqlMapClient Configuration                                  -->
+<!-- ====================================================================== -->
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
 		p:configLocation="classpath:sql-map-config.xml"
 		p:mappingLocations="classpath:**/sqlmap-*.xml"
 		p:dataSource-ref="dataSource"
 		p:lobHandler-ref="oracleLobHandler"/>
+
+<!-- ====================================================================== -->
+<!--     iBatis sqlMapClient Template Configuration                         -->
+<!-- ====================================================================== -->
+	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate"
+		p:sqlMapClient-ref="sqlMapClient" />
 		
-	<!-- bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
-		p:configLocation="classpath:sql-map-config.xml"
-		p:dataSource-ref="dataSource"
-		p:lobHandler-ref="oracleLobHandler"/-->
-	
 </beans>
