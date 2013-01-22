@@ -4,9 +4,6 @@
 
 <sqlMap namespace="transactionTest">
 
-	<typeAlias alias="firstEntity" type="com.epapyrus.gateway.pdf.custom.bean.TransactionTestFirstEntity"/>
-	<typeAlias alias="secondEntity" type="com.epapyrus.gateway.pdf.custom.bean.TransactionTestSecondEntity"/>
-	
 	<insert id="test-local-insert" parameterClass="HashMap">
 		INSERT INTO TEST ( ID, NAME )
 		VALUES ( #id#, #name# )

@@ -57,16 +57,18 @@
 <!-- ====================================================================== -->
 <!--     iBatis sqlMapClient Configuration                                  -->
 <!-- ====================================================================== -->
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
-		p:configLocation="classpath:sql-map-config.xml"
-		p:mappingLocations="classpath:**/sqlmap-*.xml"
-		p:dataSource-ref="dataSource"
-		p:lobHandler-ref="oracleLobHandler"/>
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:sql-map-config.xml"/>
+		<property name="mappingLocations" value="classpath:**/sqlmap-*.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="lobHandler" ref="oracleLobHandler"/>
+	</bean>
 
 <!-- ====================================================================== -->
 <!--     iBatis sqlMapClient Template Configuration                         -->
 <!-- ====================================================================== -->
-	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate"
-		p:sqlMapClient-ref="sqlMapClient" />
+	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
 		
 </beans>

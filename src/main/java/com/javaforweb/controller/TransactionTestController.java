@@ -38,7 +38,7 @@ public class TransactionTestController {
 	String id = "100";
 	String name = "남자다잉";
 	
-	@RequestMapping(value = "/tr/delAll")
+	@RequestMapping(value = "/tr/delAll.do")
 	@ResponseBody
 	public String deleteAll(HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
@@ -46,7 +46,7 @@ public class TransactionTestController {
 		return "DB Init Complete!";
 	}
 	
-	@RequestMapping(value = "/tr/test_by_service")
+	@RequestMapping(value = "/tr/test_by_service.do")
 	@ResponseBody
 	public String transactionTest01() {
 		testService.deleteAll(id);
@@ -55,7 +55,7 @@ public class TransactionTestController {
 		return "또 다른 Service 에서 해당 Service 에 대한 Transaction Test 완료!";
 	}
 	
-	@RequestMapping(value = "/tr/test_direct")
+	@RequestMapping(value = "/tr/test_direct.do")
 	@ResponseBody
 	public String transactionTest02() {
 		testService.deleteAll(id);
@@ -65,7 +65,7 @@ public class TransactionTestController {
 		return "해당 Service 에 대한 직접적 Transaction Test 완료!";
 	}
 	
-	@RequestMapping(value = "/tr/test_direct2")
+	@RequestMapping(value = "/tr/test_direct2.do")
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	@ResponseBody
 	public String transactionTest03() {

@@ -45,13 +45,23 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<!-- LOG4J LOGGER CONFIGURATIONS -->
+	<context-param>
+    	<param-name>log4jConfigLocation</param-name>
+    	<param-value>WEB-INF/classes/log4j.properties</param-value>
+  	</context-param>
+
+  	<listener>
+    	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  	</listener>
+  	
 	<error-page>
 		<error-code>404</error-code>
-		<location>/exception/404.vm</location>
+		<location>/exception/404.html</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/exception/500.vm</location>
+		<location>/exception/500.html</location>
 	</error-page>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
